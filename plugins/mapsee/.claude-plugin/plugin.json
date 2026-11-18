@@ -1,0 +1,18 @@
+{
+  "name": "mapsee",
+  "version": "0.5.0",
+  "description": "공용 컴포넌트 사용과 페이지 간 디자인 일관성을 검사하고 문제·일치율·커버리지를 보고하는 에이전트 플러그인",
+  "author": {
+    "name": "juno"
+  },
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "ui",
+    "lint",
+    "components",
+    "consistency"
+  ],
+  "homepage": "https://github.com/freevue/mapsee#readme",
+  "repository": "https://github.com/freevue/mapsee"
+}

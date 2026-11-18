@@ -1,14 +1,14 @@
 {
-  "name": "maepsi",
+  "name": "mapsee",
   "interface": {
-    "displayName": "맵시"
+    "displayName": "맵시 (mapsee)"
   },
   "plugins": [
     {
-      "name": "maepsi",
+      "name": "mapsee",
       "source": {
         "source": "local",
-        "path": "./plugins/maepsi"
+        "path": "./plugins/mapsee"
       },
       "policy": {
         "installation": "AVAILABLE",
