@@ -1,0 +1,19 @@
+{
+  "CU-SPACING":"mismatch",
+  "CU-RADIUS":"mismatch",
+  "CU-PLACEMENT":"mismatch",
+  "CU-CHOICE":"mismatch",
+  "CU-STATE":"mismatch",
+  "CU-ERROR":"mismatch",
+  "CU-FOCUS":"mismatch",
+  "CU-TARGET":"mismatch",
+  "CU-REFLOW":"mismatch",
+  "CU-CONTENT":"mismatch",
+  "CU-THEME":"mismatch",
+  "CU-MOTION":"mismatch",
+  "CU-STABILITY":"mismatch",
+  "CU-CLARITY":"review",
+  "CU-PILL":["match","not-applicable"],
+  "PC-SPACING":"mismatch",
+  "PC-RADIUS":"match"
+}

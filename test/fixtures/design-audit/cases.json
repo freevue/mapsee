@@ -1,0 +1,19 @@
+[
+  {"id":"CU-SPACING","axis":"component-usage","selector":"#field-group","section":"간격과 중첩","method":"static","conditions":"기본 상태","evidenceKinds":["code"]},
+  {"id":"CU-RADIUS","axis":"component-usage","selector":"#nested-child","section":"간격과 중첩","method":"static","conditions":"부모 반경과 실제 안쪽 거리","evidenceKinds":["code"]},
+  {"id":"CU-PLACEMENT","axis":"component-usage","selector":"#field-error","section":"배치와 선택","method":"static","conditions":"필드 오류가 속한 그룹","evidenceKinds":["code"]},
+  {"id":"CU-CHOICE","axis":"component-usage","selector":"#help-action","section":"배치와 선택","method":"static","conditions":"도움말 위치로 이동하는 역할","evidenceKinds":["code"]},
+  {"id":"CU-STATE","axis":"component-usage","selector":"#status-message","section":"상태와 오류","method":"browser","conditions":"상태를 로딩으로 변경하고 메시지와 버튼 확인","evidenceKinds":["interaction"]},
+  {"id":"CU-ERROR","axis":"component-usage","selector":"#form","section":"상태와 오류","method":"browser","conditions":"메모 입력·이름 누락 상태로 입력 확인 후 오류 연결·초점·메모 보존 확인","evidenceKinds":["interaction"]},
+  {"id":"CU-FOCUS","axis":"component-usage","selector":"#modal-open","section":"키보드와 포인터","method":"browser","conditions":"열기·Tab/Shift+Tab·Escape·닫기·초점 복귀","evidenceKinds":["interaction"]},
+  {"id":"CU-TARGET","axis":"component-usage","selector":"#tiny-action","section":"키보드와 포인터","method":"browser","conditions":"실제 목표 영역과 옆 대상 거리 측정","evidenceKinds":["dom"]},
+  {"id":"CU-REFLOW","axis":"component-usage","selector":"#reflow-sample","section":"변화 내구성","method":"browser","conditions":"320 CSS px 폭에서 화면 넘침과 정보·기능 확인","evidenceKinds":["dom"]},
+  {"id":"CU-CONTENT","axis":"component-usage","selector":"#long-text","section":"변화 내구성","method":"browser","conditions":"긴 이름으로 변경 후 표시와 접근 경로 확인","evidenceKinds":["dom","screenshot"]},
+  {"id":"CU-THEME","axis":"component-usage","selector":"#contrast-target","section":"변화 내구성","method":"browser","conditions":"어두운 테마에서 본문과 실제 배경 대비 측정","evidenceKinds":["dom"]},
+  {"id":"CU-MOTION","axis":"component-usage","selector":"#motion-sample","section":"변화 내구성","method":"browser","conditions":"움직임 감소 설정에서 시간에 따른 실제 애니메이션 확인","evidenceKinds":["trace"]},
+  {"id":"CU-STABILITY","axis":"component-usage","selector":"#stable-action","section":"변화 내구성","method":"browser","conditions":"지연 안내 표시 전후에 시각·좌표를 시간과 함께 기록","evidenceKinds":["trace"]},
+  {"id":"CU-CLARITY","axis":"component-usage","selector":"#actions","section":"배치와 선택","method":"review","conditions":"주요·보조 행동의 강조와 확정 기준 유무","evidenceKinds":["code","screenshot"]},
+  {"id":"CU-PILL","axis":"component-usage","selector":"#pill","section":"간격과 중첩","method":"static","conditions":"독립적인 모양에 대한 명시적 허용","evidenceKinds":["code"]},
+  {"id":"PC-SPACING","axis":"page-consistency","selector":"#field-group","section":"간격과 중첩","method":"static","conditions":"동등한 입력 그룹의 간격 선언 비교","evidenceKinds":["code"]},
+  {"id":"PC-RADIUS","axis":"page-consistency","selector":"#scaled-child","section":"간격과 중첩","method":"static","conditions":"허용된 크기 변형에서 중첩 관계 비교","evidenceKinds":["code"]}
+]

@@ -3,8 +3,8 @@
   "producer": "mapsee",
   "mode": "report-only",
   "runStatus": "incomplete",
-  "scope": {"target": "가상 검색 화면", "checks": ["static", "review"], "comparisons": [{"id": "search-settings", "target": "src/search.tsx", "reference": "src/settings.tsx", "reason": "공통 폼 레이아웃과 역할을 공유합니다.", "roles": ["페이지 제목", "주요 제출 버튼", "입력 초점"], "conditions": {"state": "검색 전·설정 기본", "viewport": null, "theme": "dark", "basis": "정적 선언만 확인한 가상 예시"}}]},
-  "inputs": {"design": {"path": "DESIGN.md", "revision": null}, "codeRevision": null, "servedRevision": null, "environment": "가상 형식 예시이며 실제 실행 기록이 아닙니다.", "limitations": ["실행 화면·커밋·도구 버전을 확인하지 않았습니다."]},
+  "scope": {"target": "가상 검색 화면", "checks": ["static", "measurement", "review"], "conditions": {"state": "기본·입력 오류·키보드 초점", "theme": "dark", "locale": "ko-KR", "basis": "검사하려는 조건을 적은 가상 예시이며 실제 재현하지 않았습니다."}, "comparisons": [{"id": "search-settings", "target": "src/search.tsx", "reference": "src/settings.tsx", "reason": "공통 폼 레이아웃과 역할을 공유합니다.", "roles": ["페이지 제목", "주요 제출 버튼", "입력 초점"], "conditions": {"state": "검색 전·설정 기본", "viewport": {"width": 390, "height": 844}, "theme": "dark", "basis": "계획한 조건이며 정적 선언만 확인한 가상 예시"}}]},
+  "inputs": {"design": {"path": "DESIGN.md", "revision": null}, "codeRevision": null, "servedRevision": null, "environment": {"basis": "가상 형식 예시이며 실제 실행 기록이 아닙니다.", "browser": null, "os": null, "viewport": null, "theme": null}, "baseline": null, "fixtures": null, "limitations": ["실행 화면·커밋·도구 버전·실제 환경을 확인하지 않았습니다."]},
   "findings": [
     {
       "criterion": {"path": "DESIGN.md", "section": "공통 UI", "condition": "검색 전·설정 기본 상태의 같은 역할"},
@@ -67,6 +67,28 @@
       "evidence": [{"kind": "code", "source": "src/search.css:2", "detail": "가상 대상 제목 24px"}, {"kind": "code", "source": "src/settings.css:2", "detail": "가상 비교 제목 24px"}],
       "suggestion": null,
       "limitations": ["글꼴 로딩과 시각적 위계는 미검증입니다."]
+    },
+    {
+      "id": "search-error-focus",
+      "axis": "component-usage", "kind": "measurement", "status": "not-measured",
+      "criterion": {"path": "DESIGN.md", "section": "오류 복구", "condition": "가상 프로젝트가 채택한 오류 위치 이동 기준"},
+      "subject": {"path": "src/search.tsx", "role": "입력 오류", "conditions": {"state": "입력 오류", "input": "가상 필수 입력 누락", "interaction": "분리된 프리뷰에서 오류 안내로 초점 이동"}},
+      "expected": "오류 안내가 해당 입력과 연결되고 키보드로 문제 위치에 접근 가능",
+      "observed": null, "evidence": [],
+      "interpretation": "실제 프리뷰와 키보드 조작을 확인하지 못했습니다.",
+      "suggestion": "기존 테스트나 분리된 프리뷰에서 오류 연결과 초점 이동을 확인합니다.",
+      "confidence": "low", "limitations": ["실제 제품에 제출하지 않았으며 오류 상태도 재현하지 못한 가상 예시입니다."]
+    },
+    {
+      "id": "search-action-emphasis",
+      "axis": "component-usage", "kind": "review", "status": "review",
+      "criterion": null,
+      "subject": {"path": "src/search.tsx", "role": "주요·보조 행동", "conditions": {"state": "기본"}},
+      "expected": null, "observed": "가상 사례: 주요·보조 행동의 강조가 비슷한 선언",
+      "evidence": [{"kind": "code", "source": "src/search.tsx:8", "detail": "강조에 관한 가상 검토 예시이며 실제 화면은 확인하지 않았습니다."}],
+      "interpretation": "주요 행동의 구분을 검토할 후보이며 확정된 강조 기준은 없습니다.",
+      "suggestion": "사용자 과업과 실제 화면을 확인해 강조 기준을 결정합니다.",
+      "confidence": "low", "limitations": ["휴리스틱 의견이며 위반 확정이나 실제 화면의 심미적 수용을 뜻하지 않습니다."]
     },
     {
       "criterion": {"path": "DESIGN.md", "section": "공통 UI", "condition": "검색 전·설정 기본 상태의 같은 역할"},

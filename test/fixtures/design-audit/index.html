@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>맵시 디자인 감사 검증 화면</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.mjs"></script>
+</head>
+<body data-view="reference" data-theme="light">
+  <main class="shell">
+    <h1>디자인 감사 검증 화면</h1>
+    <p id="view-label"></p>
+    <nav aria-label="검증 화면">
+      <a href="?view=reference">비교 화면</a>
+      <a href="?view=target">대상 화면</a>
+    </nav>
+    <section class="controls" aria-label="재현 조건">
+      <label>상태 <select id="state-control">
+        <option value="default">기본</option><option value="loading">로딩</option>
+        <option value="empty">빈 결과</option><option value="error">입력 오류</option>
+        <option value="success">성공</option>
+      </select></label>
+      <label>테마 <select id="theme-control">
+        <option value="light">밝음</option><option value="dark">어두움</option>
+      </select></label>
+      <button id="long-control" type="button">긴 이름으로 변경</button>
+    </section>
+    <section>
+      <h2>중첩 카드</h2>
+      <div id="nested" class="outer"><div id="nested-child" class="inner">안쪽 표면</div></div>
+      <div class="outer"><button id="pill" class="pill" type="button">독립적인 pill</button></div>
+    </section>
+    <section>
+      <h2>크기가 다른 중첩 카드</h2>
+      <div id="scaled" class="outer"><div id="scaled-child" class="inner">허용된 크기 변형</div></div>
+    </section>
+    <form id="form" novalidate>
+      <h2>가상 이름 확인</h2>
+      <div id="error-summary" role="alert" tabindex="-1" hidden>
+        <p>이름을 입력해 주세요.</p><a href="#name">이름 입력으로 이동</a>
+      </div>
+      <div id="field-group" class="field-group">
+        <label for="name">이름</label>
+        <input id="name" name="name" aria-describedby="field-help field-error">
+        <label for="note">메모</label><input id="note" name="note">
+        <p id="field-help">이 값은 외부로 전송하지 않습니다.</p>
+        <p id="field-error" hidden>이름을 입력해 주세요.</p>
+      </div>
+      <div id="actions" class="actions">
+        <button id="submit-action" type="submit">입력 확인</button>
+        <button type="button">다른 작업</button>
+        <a id="help-action" href="#help">도움말로 이동</a>
+      </div>
+    </form>
+    <aside id="unrelated-group"><h2>별도 안내</h2><p>입력과 무관한 정보입니다.</p></aside>
+    <p id="status-message" role="status">입력할 준비가 되었습니다.</p>
+    <section aria-label="모달과 터치 영역">
+      <button id="modal-open" type="button">모달 열기</button>
+      <button id="tiny-action" class="tiny" aria-label="첫 번째 작은 행동" type="button">+</button><button class="tiny" aria-label="두 번째 작은 행동" type="button">−</button>
+      <dialog id="good-modal" aria-labelledby="good-title">
+        <h2 id="good-title">안내</h2><p>키보드 동작을 확인합니다.</p>
+        <button id="good-close" type="button">닫기</button>
+      </dialog>
+      <div id="bad-modal" class="bad-modal" role="dialog" aria-modal="true" aria-labelledby="bad-title" hidden>
+        <h2 id="bad-title">안내</h2><p>키보드 동작을 확인합니다.</p>
+        <button id="bad-close" type="button">닫기</button>
+      </div>
+    </section>
+    <section id="reflow-sample"><h2>좁은 화면</h2><p>이 영역은 작은 화면에도 읽을 수 있어야 합니다.</p></section>
+    <section class="long-card"><h2>가변 길이 콘텐츠</h2><p id="long-text">일반 이름</p></section>
+    <p id="contrast-target">테마가 바뀌어도 읽을 수 있어야 하는 일반 본문입니다.</p>
+    <div id="motion-sample" class="motion-sample">장식 움직임</div>
+    <section aria-label="지연 콘텐츠">
+      <button id="delay-control" type="button">지연 안내 표시</button>
+      <div id="delayed-slot"><div id="delayed-content" hidden>추가 안내가 도착했습니다.</div></div>
+      <button id="stable-action" type="button">위치가 유지되는 행동</button>
+    </section>
+    <section id="help"><h2>도움말</h2><p>모든 데이터는 검증용 가상 자료입니다.</p></section>
+  </main>
+</body>
+</html>

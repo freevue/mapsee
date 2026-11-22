@@ -10,13 +10,15 @@ Markdown과 JSON은 같은 검사와 근거를 표현합니다. JSON은 [가상 
 | `producer` | `mapsee`입니다. |
 | `mode` | `report-only`입니다. |
 | `runStatus` | `complete`, `incomplete`, `blocked` 중 하나입니다. |
-| `scope` | 대상·표본 범위와 선택한 수집 방법입니다. `comparisons`에 비교 ID·대상·비교 페이지·선택 이유·공통 역할·상태·해상도·테마를 기록합니다. |
-| `inputs` | 디자인 기준·코드·실행 서버·도구·환경의 식별 근거입니다. 확인할 수 없는 식별자는 `null`과 이유를 기록합니다. |
+| `scope` | 대상·표본 범위와 수집 방법입니다. `conditions`에 계획한 공통 재현 조건을 적고 `comparisons`에 비교 ID·대상·비교 페이지·선택 이유·공통 역할과 비교 조건을 기록합니다. |
+| `inputs` | 디자인 기준·코드·실행 서버·도구·환경의 실제 식별 근거입니다. `environment`에 실제 실행 조건, 기준 화면·가상 자료가 있으면 `baseline`·`fixtures`에 출처와 재사용 범위를 기록합니다. 확인 불가는 `null`과 이유를 남깁니다. |
 | `findings` | 각 검사 결과입니다. 불일치뿐 아니라 요청한 검사 중 미측정도 남깁니다. |
 | `summary` | `componentUsage`와 `pageConsistency`의 항목 수·일치율·커버리지입니다. 집계 도구가 채웁니다. |
 | `errors` | 실행을 막거나 일부 검사를 끝내지 못한 이유입니다. |
 
 `complete`는 선택한 검사 범위의 확인을 끝냈다는 뜻입니다. 모든 화면·심미 품질·접근성의 수용을 뜻하지 않습니다. 불일치가 있어도 수집을 끝냈다면 `complete`일 수 있습니다. 기준 부재 등으로 시작할 수 없으면 `blocked`, 요청한 검사 일부를 하지 못했다면 `incomplete`입니다. 주관적 판단을 `review`로 남긴 것만으로 실행 오류가 되지는 않습니다.
+
+계획한 항목 중 `not-measured`가 하나라도 있으면 정적 대조를 끝냈더라도 `runStatus`는 `incomplete`입니다. 미측정의 이유를 해당 항목의 `limitations`와 실행 정보에 남깁니다.
 
 ## 항목별 정보
 
@@ -37,6 +39,14 @@ Markdown과 JSON은 같은 검사와 근거를 표현합니다. JSON은 [가상 
 | `limitations` | 예외, 환경 차이와 확인하지 못한 부분입니다. |
 
 경로는 대상 프로젝트 기준으로 식별하고 외부 자료는 출처를 명시합니다. 해시·기준 커밋·캡처 경로는 실제 확인한 값만 적습니다. 요청 범위와 무관한 식별값·비밀값·개인정보는 넣지 않습니다.
+
+JSON 작성 전에 [가상 예시](report.example.json)의 필드 타입을 확인합니다. `criterion`은 `path`·`section`·적용 조건 `condition`을 가진 객체 또는 기준이 없을 때 `null`, `subject`는 위치·역할을 식별하는 객체입니다. `evidence`는 `kind`·`source`·`detail` 객체의 배열, `limitations`는 문자열 배열입니다. 경로와 설명을 한 문자열로 합쳐 이 객체·배열을 대체하지 않습니다. 실제 확인한 기준 경로와 문단을 넣고 예시의 가상 경로를 복사하지 않습니다.
+
+[구성과 관계 검사](composition.md)는 기존 필드로 보고합니다. `subject`에 부모·자식 또는 관련 요소와 역할을 식별하고, `expected`에는 채택된 관계식·배치·선택 조건을, `observed`에는 실제 반경·안쪽 거리·위치·역할을 적습니다. 선택 이유의 원본 근거는 `criterion`·`evidence`로 연결하고 관찰에서 추론한 해석은 `interpretation`으로 구분합니다. 자료가 부족하면 이유를 지어내지 않고 `review` 또는 `not-measured`로 남깁니다.
+
+[상태와 조작](interaction.md)·[변화 내구성](resilience.md)도 기존 필드로 표현합니다. 계획은 `scope.conditions`, 항목별 재현 조건은 필요한 경우 `subject.conditions`, 실제 확인한 조건은 `inputs.environment`와 `evidence`에 남깁니다. 상태·화면 크기·확대 방식/비율·테마·언어·콘텐츠·입력 방법·움직임 설정 중 해당하는 값만 적습니다. 비교별 조건은 `scope.comparisons[].conditions`에 둡니다. 계획한 조건을 실제 관찰로 복사하지 않습니다.
+
+원본 기준과 표준 채택 근거·버전·조항·등급은 `criterion`의 경로·문단·적용 조건과 `evidence`로 연결합니다. 각 결과에 재현 조건·기대 결과·관찰·판정·제안을 남기고, 휴리스틱에 따른 개선 의견은 `interpretation`과 `review`로 구분합니다. 재현하지 못한 조작·환경은 `not-measured`와 이유를 남깁니다. 이 조건 정보는 집계기가 해석·검증하는 별도 검사기가 아니며 두 축과 기존 산식은 유지합니다.
 
 ## 판정 상태
 
