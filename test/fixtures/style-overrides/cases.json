@@ -1,0 +1,10 @@
+[
+  {"id":"CU-STYLE-01","axis":"component-usage","path":"target.mjs","subject":"compact의 높이","section":"버튼의 표현 계약","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-STYLE-02","axis":"component-usage","path":"target.mjs","subject":"pending의 비활성 표시","section":"버튼의 표현 계약","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-STYLE-03","axis":"component-usage","path":"target.mjs","subject":"spacing의 안쪽 여백","section":"버튼의 표현 계약","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-STYLE-04","axis":"component-usage","path":"target.mjs","subject":"wide의 너비와 바깥 배치","section":"버튼의 표현 계약","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-STYLE-05","axis":"component-usage","path":"target.mjs","subject":"plain의 호출부 스타일","section":"버튼의 표현 계약","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-STYLE-06","axis":"component-usage","path":"target.mjs","subject":"recolored의 색","section":"버튼의 표현 계약","method":"static","evidenceKinds":["code"]},
+  {"id":"PC-STYLE-01","axis":"page-consistency","path":"target.mjs","subject":"검색 compact와 설정 save 높이","section":"대상과 비교","method":"static","evidenceKinds":["code"]},
+  {"id":"PC-STYLE-02","axis":"page-consistency","path":"target.mjs","subject":"두 페이지 제목 크기","section":"대상과 비교","method":"static","evidenceKinds":["code"]}
+]

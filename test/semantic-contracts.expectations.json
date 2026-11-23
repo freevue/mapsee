@@ -1,0 +1,12 @@
+{
+  "CU-MEANING-01": "match",
+  "CU-MEANING-02": "mismatch",
+  "CU-MEANING-03": "match",
+  "CU-MEANING-04": "mismatch",
+  "CU-MEANING-05": "match",
+  "CU-MEANING-06": "review",
+  "CU-STATE-01": "match",
+  "CU-STATE-02": "mismatch",
+  "CU-FORCED-01": "match",
+  "CU-FORCED-02": "mismatch"
+}

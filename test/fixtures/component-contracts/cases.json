@@ -1,0 +1,10 @@
+[
+  {"id":"CU-CON-01","axis":"component-usage","path":"actions.tsx","subject":"LoadingAction의 두 상태","section":"상태별 행동","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-CON-02","axis":"component-usage","path":"actions.tsx","subject":"DisabledAction의 disabled 전달","section":"래퍼의 공개 계약","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-CON-03","axis":"component-usage","path":"actions.tsx","subject":"EventAction의 onClick 전달","section":"래퍼의 공개 계약","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-CON-04","axis":"component-usage","path":"actions.tsx","subject":"GuardedAction의 상태와 전달","section":"래퍼의 공개 계약","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-CON-05","axis":"component-usage","path":"fields.tsx","subject":"NameField의 label 연결","section":"입력과 오류의 연결","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-CON-06","axis":"component-usage","path":"fields.tsx","subject":"ErrorField의 오류 연결","section":"입력과 오류의 연결","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-CON-07","axis":"component-usage","path":"fields.tsx","subject":"ConnectedField의 입력과 오류 구성","section":"입력과 오류의 연결","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-CON-08","axis":"component-usage","path":"actions.tsx","subject":"SubmitOnlyAction의 공개 계약","section":"래퍼의 공개 계약","method":"static","evidenceKinds":["code"]}
+]

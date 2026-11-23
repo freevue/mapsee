@@ -4,6 +4,8 @@
 
 공용 컴포넌트를 올바르게 사용하는지, 현재 페이지의 UI가 다른 페이지와 일관되는지 검사하는 Claude Code·Codex용 플러그인입니다. 문제의 위치와 근거, 두 검사 축의 일치율과 검사 커버리지를 보고합니다.
 
+1.0.0은 Codex 우선 정식 배포입니다. Claude 패키지 형식은 검사하며 실제 Claude 실행은 미검증입니다. 보고서·CLI의 유지 범위와 버전 정책은 [호환성 계약](plugins/mapsee/COMPATIBILITY.md)을 따릅니다.
+
 핵심 스킬은 `mapsee:lint`입니다. wiki·디자인 문서·제품 코드를 수정하지 않습니다. bab·pstack이나 사용자가 결과를 받아 후속 작업을 결정합니다. 맵시를 쓰기 위해 다른 개발 방법론이나 플러그인을 설치할 필요는 없습니다.
 
 ## 두 가지 핵심 검사
@@ -84,6 +86,8 @@ mapsee:lint 결과를 bab 또는 pstack에 전달할 수 있게 JSON으로도 �
 
 setup은 문서가 이미 있어도 실제 토큰·컴포넌트·대표 사용처와 대조해 문서별 상태와 보완할 내용을 보고합니다. 근거가 명확한 링크·설명은 기존 문서에 보완하고, 새 디자인 결정과 출처 충돌은 미결정으로 남깁니다. 문서 보완 완료와 실제 화면 검사 통과는 구분합니다.
 
+역할별 사용 기준은 필수·권장·허용·미결정으로 구분하고 공개 경로·조건·예외·원본 근거를 연결합니다. 같은 입력과 결정으로 setup을 다시 실행할 때 중복 문서나 불필요한 변경을 만들지 않고, 코드 관찰을 확정 규칙으로 승격하지 않습니다.
+
 여백 단계의 통일성, 여백 변경에 따른 안쪽 라운드의 의존 관계, 배치와 컴포넌트 선택 이유가 설명되어 있는지도 점검합니다. 수치만 나열하지 않고 채택한 관계식·적용 조건·예외와 사용 예를 함께 정리합니다.
 
 상태·조작·콘텐츠·환경 변화의 기준도 같은 방식으로 점검합니다. 재현할 상태·입력·화면 조건과 기대 결과를 문서에 연결하고, 표준의 채택 여부와 관찰·미결정을 구분해 보완합니다.
@@ -112,6 +116,8 @@ codex plugin marketplace add freevue/mapsee
 codex plugin add mapsee@mapsee
 ```
 
+기존 Codex 설치는 `codex plugin marketplace upgrade mapsee` 후 `codex plugin add mapsee@mapsee`로 갱신합니다. Node.js 20 이상이 집계 도구 실행에 필요합니다. [1.0.0 배포 노트](docs/releases/1.0.0.md)에서 검증 범위와 남은 제한을 확인합니다.
+
 로컬 개발 패키지를 설치할 때는 저장소 루트에서 마켓플레이스 주소 대신 `.`을 사용합니다. 기존 `maepsi`·`bab-lint` 설치는 자동으로 이름이 바뀌지 않습니다. 전환할 때 이전 설치와 호출 이름을 확인합니다.
 
 ## 개발 확인
@@ -120,4 +126,22 @@ Node.js 20 이상에서 저장소 루트의 `node --test test/*.test.mjs`를 실
 
 확장 항목은 [재현용 화면과 기준](test/fixtures/design-audit/DESIGN.md), [17개 검사 시나리오](test/fixtures/design-audit/cases.json), [검증 실행 절차](docs/verification-plan.md)로 확인합니다. `node test/check-audit-report.mjs <보고서.json>`은 기대 판정과 근거 종류를 확인하며 미측정은 종료 코드 2로 남깁니다. 이 명령은 브라우저나 에이전트를 실행하지 않으며 실제 수집 근거는 별도로 검토합니다.
 
-0.6.0의 변경 요약, 로컬 검사·가상 프로젝트 평가·Codex 설치본과 실제 앱 화면의 검증 결과는 [검증 기록](docs/verification.md)에 있습니다. 확정 아이콘과 생성 근거는 [브랜딩 기록](docs/branding.md)에 있습니다. 이 저장소는 [MIT 라이선스](LICENSE)로 배포합니다.
+공용 컴포넌트의 일반 DOM 대체와 허용된 사용을 대조하는 [정적 회귀 10개](test/fixtures/component-reuse/DESIGN.md)도 제공합니다. 해당 보고서는 `node test/check-audit-report.mjs <보고서.json> component-reuse`로 확인합니다. 별칭·래퍼·컴포넌트 내부 DOM과 재사용 기준의 적용 범위를 구분하며, 이 검증기도 범용 JSX 분석기를 대신하지 않습니다.
+
+분기별 렌더·속성 전달·FormField와 Input의 연결을 대조하는 [정적 회귀 8개](test/fixtures/component-contracts/DESIGN.md)는 `node test/check-audit-report.mjs <보고서.json> component-contracts`로 확인합니다. 실제 Dialog·폼 조작 검증은 따로 수행합니다.
+
+[스타일 재정의 회귀 8개](test/fixtures/style-overrides/DESIGN.md)는 `style-overrides`로 확인합니다. 허용된 너비·plain과 고정 높이·여백·색·비활성 계약의 위반을 구분합니다. [대상 목록](plugins/mapsee/skills/lint/references/scope.md)은 발견한 페이지·사용처·상태와 검사 ID를 연결해 검사 누락과 범위 밖을 보여 줍니다. 같은 URL의 스텝과 실제 다른 URL의 비교도 구분합니다.
+
+버전별 재검사에서는 [결과 이력 비교](plugins/mapsee/skills/lint/references/history.md)로 새 불일치·해결·남은 문제·미재검사·기준 변경을 확인합니다. `node <lint 스킬 경로>/scripts/compare.mjs <이전.json> <현재.json>`은 입력을 보존합니다. 검사하지 않은 항목이 사라졌다는 이유로 해결 처리하지 않습니다.
+
+새 수집에서는 [대상·상태·근거 연결](plugins/mapsee/skills/lint/references/quality.md)을 검증합니다. 다른 페이지·기본 상태의 근거로 처리 중·오류까지 완료 처리하지 않습니다. 문제는 과업 영향·공통 원인·소유 위치로 묶고, 변경 파일은 확인한 사용처 관계에서 재검사 대상을 제안합니다. `node <lint 스킬 경로>/scripts/retest.mjs <보고서.json> <변경파일배열.json>`은 미연결 변경과 표본 밖 영향도 남깁니다. 이 제안은 검사 실행이나 기존 필수 검사 축소를 승인하지 않습니다.
+
+좁은 카드·모달·사이드바에서는 [실제 부모 영역별 크기·변형·배치](plugins/mapsee/skills/lint/references/placement.md)를 확인합니다. [연속 상태 전환](plugins/mapsee/skills/lint/references/transitions.md)은 실패→수정→재시도→성공, 대기 중 닫기와 이탈 뒤 늦은 응답을 실제 조작·응답 순서로 검사합니다. setup도 같은 조건과 기대 결과가 기존 가이드에 설명되어 있는지 점검합니다.
+
+`node <lint 스킬 경로>/scripts/verify-evidence.mjs <보고서.json> <근거묶음.json>`은 [보존한 원본](plugins/mapsee/skills/lint/references/evidence.md)의 파일 해시·JSON 내부 위치·기준과 보고서 연결을 대조합니다. 입력을 보존하며 연결 문제는 종료 코드 2로 표시합니다. 파일 동일성과 판정의 타당성은 구분합니다.
+
+정지 비교는 [캡처 준비 조건](plugins/mapsee/skills/lint/references/capture.md)의 대상·조상·선택 자산과 연속 구간을 먼저 확인합니다. `node <lint>/scripts/check-readiness.mjs <준비기록.json>`은 ready·pending·transition을 구분하고 큰 관찰 공백을 준비 완료로 세지 않습니다. [실제 모바일 키보드](plugins/mapsee/skills/lint/references/mobile-viewport.md)와 합성 표시 영역, [툴팁·메뉴의 연결·가림·유지](plugins/mapsee/skills/lint/references/floating.md)도 재현 수준에 맞춰 검사합니다. [가상 검증 화면](test/fixtures/capture-and-floating/DESIGN.md)은 제품 결과와 구분합니다.
+
+[토큰 역할·별칭·활성 fallback](plugins/mapsee/skills/lint/references/token-meaning.md), [표시·선택 값·활성 콘텐츠](plugins/mapsee/skills/lint/references/state-meaning.md), [강제 색상의 상태·포커스](plugins/mapsee/skills/lint/references/forced-colors.md)도 원본 계약과 대조합니다. 같은 색을 역할 준수로 보증하거나 native radio에 탭의 ARIA를 강제하지 않습니다. [가상 시나리오 10개](test/fixtures/semantic-contracts/DESIGN.md)의 보고서는 `node test/check-audit-report.mjs <보고서.json> semantic-contracts`로 대조합니다. 이 명령은 소스 분석·브라우저 실행을 대신하지 않습니다.
+
+현재 1.0.0의 [배포 노트](docs/releases/1.0.0.md)·[검증 결과](docs/verification/1.0.0.md)와 [버전별 적용 절차](docs/version-validation.md)를 확인합니다. 이전 [0.12.0 실제 화면](docs/verification/0.12.0.md)·[0.11.0](docs/verification/0.11.0.md)·[0.10.0](docs/verification/0.10.0.md)·[0.9.0](docs/verification/0.9.0.md)·[0.8.0](docs/verification/0.8.0.md)·[0.7.0](docs/verification/0.7.0.md) 자료는 보존합니다. 이전 검증은 [검증 기록](docs/verification.md), 확정 아이콘은 [브랜딩 기록](docs/branding.md)에 있습니다. 이 저장소는 [MIT 라이선스](LICENSE)로 배포합니다.

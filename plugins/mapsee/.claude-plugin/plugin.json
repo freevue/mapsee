@@ -1,6 +1,6 @@
 {
   "name": "mapsee",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "description": "공용 컴포넌트 사용과 페이지 간 디자인 일관성을 검사하고 문제·일치율·커버리지를 보고하는 에이전트 플러그인",
   "author": {
     "name": "juno"

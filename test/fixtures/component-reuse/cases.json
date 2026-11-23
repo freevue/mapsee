@@ -1,0 +1,12 @@
+[
+  {"id":"CU-USE-01","axis":"component-usage","path":"screens.tsx","subject":"ProfileAction","section":"제출 행동","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-USE-02","axis":"component-usage","path":"screens.tsx","subject":"ProfileSurface","section":"정보 표면","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-USE-03","axis":"component-usage","path":"screens.tsx","subject":"AccountAction","section":"제출 행동","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-USE-04","axis":"component-usage","path":"screens.tsx","subject":"PreferenceAction","section":"호출 경로와 허용 범위","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-USE-05","axis":"component-usage","path":"screens.tsx","subject":"ConfirmationAction","section":"호출 경로와 허용 범위","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-USE-06","axis":"component-usage","path":"screens.tsx","subject":"ContentLayout","section":"호출 경로와 허용 범위","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-USE-07","axis":"component-usage","path":"ui.tsx","subject":"ActionButton·Surface 구현에 화면 호출부 규칙을 적용할지","section":"호출 경로와 허용 범위","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-USE-08","axis":"component-usage","path":"screens.tsx","subject":"HelpDisclosure","section":"호출 경로와 허용 범위","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-USE-09","axis":"component-usage","path":"legacy.tsx","subject":"ArchiveAction","section":"기존 영역의 결정 상태","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-USE-10","axis":"component-usage","path":"screens.tsx","subject":"NotificationAction","section":"제출 행동","method":"static","evidenceKinds":["code"]}
+]

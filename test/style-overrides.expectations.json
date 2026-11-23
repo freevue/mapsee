@@ -1,0 +1,10 @@
+{
+  "CU-STYLE-01": "mismatch",
+  "CU-STYLE-02": "mismatch",
+  "CU-STYLE-03": "mismatch",
+  "CU-STYLE-04": "match",
+  "CU-STYLE-05": ["match", "not-applicable"],
+  "CU-STYLE-06": "mismatch",
+  "PC-STYLE-01": "mismatch",
+  "PC-STYLE-02": "match"
+}

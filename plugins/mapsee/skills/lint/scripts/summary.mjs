@@ -1,3 +1,6 @@
+import { summarizeInventory } from './inventory.mjs'
+import { summarizeProblems } from './problems.mjs'
+
 const axes = ['component-usage', 'page-consistency']
 const statuses = ['match', 'mismatch', 'review', 'not-measured', 'not-applicable']
 const requireValue = (condition, reason) => {
@@ -67,6 +70,8 @@ export const summarizeReport = (report) => {
   }
   return {
     ...report,
+    inventorySummary: summarizeInventory(report),
+    problemSummary: summarizeProblems(report),
     summary: {
       componentUsage: summarizeAxis(report.findings, 'component-usage'),
       pageConsistency: summarizeAxis(report.findings, 'page-consistency'),

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>맵시 의미 계약 검증 자료</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  body { margin: 24px; font: 16px/1.5 sans-serif; background: white; color: #222; }
+  button { padding: 10px 16px; margin: 4px; font: inherit; }
+  [data-active="true"] { background: #ffe170; color: #111; }
+  section { margin: 24px 0; }
+  #good-focus:focus-visible { outline: 3px solid #003ccc; outline-offset: 3px; }
+  #bad-focus:focus-visible { outline: none; box-shadow: 0 0 0 3px #003ccc; }
+</style>
+<main>
+  <h1>의미 계약 검증 자료</h1>
+  <section aria-label="토큰 역할">
+    <p id="token-good" class="status-good">정상 오류 역할</p>
+    <p id="token-wrong" class="status-wrong">값이 같은 다른 역할</p>
+    <p id="token-alias" class="status-alias">허용된 로컬 별칭</p>
+    <p id="token-fallback" class="status-fallback">필수 토큰 오타</p>
+    <p id="token-optional" class="status-optional">허용된 선택적 토큰</p>
+    <p id="token-legacy" class="status-legacy">역할 미결정</p>
+  </section>
+  <section id="good-tabs" aria-label="정상 수동 탭">
+    <div role="tablist" aria-label="정상 탭">
+      <button id="good-one" role="tab" aria-controls="good-panel-one" aria-selected="true" tabindex="0" data-active="true">첫째</button>
+      <button id="good-two" role="tab" aria-controls="good-panel-two" aria-selected="false" tabindex="-1" data-active="false">둘째</button>
+    </div>
+    <div id="good-panel-one" role="tabpanel" aria-labelledby="good-one">첫째 내용</div>
+    <div id="good-panel-two" role="tabpanel" aria-labelledby="good-two" hidden>둘째 내용</div>
+  </section>
+  <section id="bad-tabs" aria-label="오류 수동 탭">
+    <div role="tablist" aria-label="오류 탭">
+      <button id="bad-one" role="tab" aria-controls="bad-panel-one" aria-selected="true" tabindex="0" data-active="true">첫째</button>
+      <button id="bad-two" role="tab" aria-controls="bad-panel-two" aria-selected="false" tabindex="-1" data-active="false">둘째</button>
+    </div>
+    <div id="bad-panel-one" role="tabpanel" aria-labelledby="bad-one">첫째 내용</div>
+    <div id="bad-panel-two" role="tabpanel" aria-labelledby="bad-two" hidden>둘째 내용</div>
+  </section>
+  <section aria-label="강제 색상 포커스">
+    <button id="good-focus">outline 포커스</button>
+    <button id="bad-focus">그림자만 포커스</button>
+  </section>
+</main>
+<script>
+  for (const prefix of ['good', 'bad']) {
+    const tabs = [...document.querySelectorAll(`#${prefix}-tabs [role="tab"]`)];
+    const activate = (selected) => {
+      for (const tab of tabs) {
+        const active = tab === selected;
+        tab.dataset.active = String(active);
+        tab.tabIndex = active ? 0 : -1;
+        document.getElementById(tab.getAttribute('aria-controls')).hidden = !active;
+        if (prefix === 'good') tab.setAttribute('aria-selected', String(active));
+      }
+    };
+    for (const tab of tabs) {
+      tab.addEventListener('click', () => activate(tab));
+      tab.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') { event.preventDefault(); activate(tab); }
+        if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+          event.preventDefault();
+          const direction = event.key === 'ArrowRight' ? 1 : -1;
+          tabs[(tabs.indexOf(tab) + direction + tabs.length) % tabs.length].focus();
+        }
+      });
+    }
+  }
+</script>
+</html>

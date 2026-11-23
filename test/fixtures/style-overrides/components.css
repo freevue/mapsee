@@ -1,0 +1,3 @@
+.action { height: 40px; padding: 0 16px; background: #3366ff; color: white; }
+.action:disabled { opacity: 0.5; cursor: wait; }
+.title { font-size: 24px; }

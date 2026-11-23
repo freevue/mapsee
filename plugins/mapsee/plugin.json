@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "mapsee",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "description": "공용 컴포넌트 사용과 페이지 간 디자인 일관성을 검사하고 문제·일치율·커버리지를 보고하는 에이전트 플러그인",
   "author": {
     "name": "juno"
@@ -12,7 +12,7 @@
       "interface": {
         "displayName": "맵시 (mapsee)",
         "shortDescription": "컴포넌트 사용과 페이지 간 일관성을 검사합니다",
-        "longDescription": "컴포넌트의 선택·배치·간격·중첩 라운드, 상태·조작·환경 변화와 페이지 간 일관성을 검사합니다. 근거와 두 축의 일치율·커버리지를 보고합니다. setup은 기존 디자인·컴포넌트 문서의 상태를 점검하고 보완합니다. lint는 wiki와 제품 코드를 수정하지 않습니다.",
+        "longDescription": "공용 컴포넌트 사용과 페이지 일관성을 검사합니다. 토큰의 역할·별칭·실제 fallback 경로, 표시·native/ARIA 선택·활성 콘텐츠와 조작의 일치를 확인합니다. 강제 색상 환경의 포커스·선택을 실제 OS와 브라우저 모의로 구분합니다. setup은 기존 기준을 보완하며 lint는 보고 전용입니다.",
         "developerName": "juno",
         "category": "Productivity",
         "capabilities": [

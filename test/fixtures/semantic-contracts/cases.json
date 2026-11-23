@@ -1,0 +1,12 @@
+[
+  {"id":"CU-MEANING-01","axis":"component-usage","path":"tokens.css","subject":"오류 역할의 직접 참조","section":"토큰 역할","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-MEANING-02","axis":"component-usage","path":"tokens.css","subject":"같은 값의 다른 역할","section":"토큰 역할","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-MEANING-03","axis":"component-usage","path":"tokens.css","subject":"허용된 로컬 별칭","section":"토큰 역할","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-MEANING-04","axis":"component-usage","path":"tokens.css","subject":"필수 토큰 오타의 fallback","section":"토큰 역할","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-MEANING-05","axis":"component-usage","path":"tokens.css","subject":"선택적 토큰의 허용 fallback","section":"토큰 역할","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-MEANING-06","axis":"component-usage","path":"tokens.css","subject":"역할 미결정","section":"토큰 역할","method":"static","evidenceKinds":["code"]},
+  {"id":"CU-STATE-01","axis":"component-usage","path":"index.html","subject":"정상 수동 탭의 초점·선택·패널","section":"선택 상태","method":"browser","evidenceKinds":["interaction"]},
+  {"id":"CU-STATE-02","axis":"component-usage","path":"index.html","subject":"표시와 ARIA 선택의 불일치","section":"선택 상태","method":"browser","evidenceKinds":["interaction"]},
+  {"id":"CU-FORCED-01","axis":"component-usage","path":"index.html","subject":"강제 색상의 outline 포커스","section":"강제 색상","method":"browser","evidenceKinds":["interaction"]},
+  {"id":"CU-FORCED-02","axis":"component-usage","path":"index.html","subject":"강제 색상의 그림자 포커스 소실","section":"강제 색상","method":"browser","evidenceKinds":["interaction"]}
+]

@@ -1,0 +1,11 @@
+:root {
+  --status-error: #b42318;
+  --action-accent: #b42318;
+  --legacy: #b42318;
+}
+.status-good { color: var(--status-error); }
+.status-wrong { color: var(--action-accent); }
+.status-alias { --local-error: var(--status-error); color: var(--local-error); }
+.status-fallback { color: var(--misspelled-error, var(--status-error)); }
+.status-optional { color: var(--brand-optional, var(--status-error)); }
+.status-legacy { color: var(--legacy); }

@@ -1,0 +1,12 @@
+{
+  "CU-USE-01": "mismatch",
+  "CU-USE-02": "mismatch",
+  "CU-USE-03": "mismatch",
+  "CU-USE-04": "match",
+  "CU-USE-05": "match",
+  "CU-USE-06": ["match", "not-applicable"],
+  "CU-USE-07": "not-applicable",
+  "CU-USE-08": ["match", "not-applicable"],
+  "CU-USE-09": "review",
+  "CU-USE-10": "mismatch"
+}
