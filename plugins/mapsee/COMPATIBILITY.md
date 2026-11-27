@@ -37,6 +37,9 @@ Node.js 20 이상에서 lint 스킬의 scripts 경로로 실행합니다. 모두
 | retest.mjs 보고서.json 변경파일배열.json | 0: 제안 생성, 1: 입력·실행 오류 |
 | verify-evidence.mjs 보고서.json 근거묶음.json | 0: 원본·연결 verified, 2: issues, 1: 입력·실행 오류 |
 | check-readiness.mjs 준비기록.json | 0: ready, 2: pending 또는 transition, 1: 입력·실행 오류 |
+| render-grid.mjs 측정.json 새결과.svg | 0: 산술 차이 없음, 2: 배수·정렬 차이, 1: 입력·실행 오류. 새 SVG만 생성하며 기존 파일은 보존 |
+
+1.1.0의 [격자 입력·SVG 도구](skills/lint/references/grid.md)는 측정 근거 version 1을 사용합니다. 미채택 기준은 review이고 종료 코드 2가 제품 오류를 뜻하지 않을 수 있습니다. 최종 보고서 schemaVersion 1과 기존 두 축은 유지합니다.
 
 [이력](skills/lint/references/history.md)은 누락·미측정을 해결로 만들지 않습니다. [재검사 제안](skills/lint/references/quality.md)은 검사 실행이나 기존 필수 검사 축소를 승인하지 않습니다. [근거 묶음](skills/lint/references/evidence.md)과 [준비 기록](skills/lint/references/capture.md)은 각각 version 1을 유지합니다. 파일 동일성·선택한 관찰 기록의 정합성과 판정 타당성·실제 화면의 진실성은 구분합니다.
 
@@ -46,4 +49,4 @@ Node.js 20 이상에서 lint 스킬의 scripts 경로로 실행합니다. 모두
 
 호환 수정은 패치, 기존 입력·의미를 유지하는 기능 추가는 마이너, 필수 필드·허용 값·산식·종료 코드·스킬의 변경 권한 등 호환되지 않는 변경은 메이저 버전으로 배포합니다. 이미 배포한 버전의 내용을 덮어쓰지 않습니다. 새 검사 주제를 적용할 때는 프로젝트의 채택 근거와 해당 실행의 계획·표본을 따로 기록합니다.
 
-1.0.0은 Codex 우선 배포입니다. Codex CLI 0.155.1에서 설치·갱신과 설치본 도구를 확인합니다. Claude 패키지 구성은 정적 검사 대상이며 실제 Claude 실행은 미검증입니다. 브라우저·디바이스·전체 프로젝트의 적합성은 개별 검증 범위를 확인합니다.
+1.0.0부터 Codex를 우선 지원합니다. 1.1.0의 실제 설치·갱신·도구 검증은 저장소의 `docs/verification/1.1.0.md`에 구분합니다. Claude 패키지 구성은 정적 검사 대상이며 실제 Claude 실행은 미검증입니다. 브라우저·디바이스·전체 프로젝트의 적합성은 개별 검증 범위를 확인합니다.

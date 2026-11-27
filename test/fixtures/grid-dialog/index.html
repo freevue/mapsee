@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>맵시 격자·다이얼로그 가상 검증</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 32px; font-family: system-ui, sans-serif; background: #f1f5f9; color: #0f172a; }
+  h1 { font-size: 24px; }
+  button, input { font: inherit; }
+  button { padding: 8px 16px; border: 0; border-radius: 8px; cursor: pointer; background: #1d4ed8; color: white; }
+  button:focus-visible, input:focus-visible { outline: 3px solid #0d9488; outline-offset: 3px; }
+  button:disabled { opacity: .6; cursor: wait; }
+  dialog { padding: 24px; border: 0; border-radius: 16px; width: min(432px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); }
+  dialog::backdrop { background: rgb(15 23 42 / .42); }
+  h2 { margin: 0; font-size: 20px; line-height: 28px; }
+  #body { margin-top: 14px; }
+  #body p { margin: 0 0 16px; line-height: 24px; color: #475569; }
+  label { display: block; margin-bottom: 8px; line-height: 24px; }
+  input { display: block; width: 100%; height: 40px; padding: 8px 12px; border: 1px solid #94a3b8; border-radius: 8px; }
+  #status:not(:empty) { margin-top: 12px; line-height: 24px; }
+  [data-state="error"] #status { color: #b91c1c; }
+  footer { display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px; }
+  #close { background: #e2e8f0; color: #0f172a; }
+</style>
+<h1>가상 검증 화면</h1>
+<p>실제 저장 없이 다이얼로그의 간격과 상태 변화를 확인합니다.</p>
+<button id="open">프로필 편집</button>
+<dialog id="profile-dialog" aria-labelledby="title" data-state="default">
+  <h2 id="title">프로필 편집</h2>
+  <form id="body">
+    <p>다른 사람에게 표시할 이름을 입력하세요.</p>
+    <label for="name">표시 이름</label>
+    <input id="name" value="맵시" required>
+    <div id="status" role="status"></div>
+    <footer><button type="button" id="close">닫기</button><button id="submit">저장</button></footer>
+  </form>
+</dialog>
+<script type="module">
+  const dialog = document.querySelector('#profile-dialog')
+  const status = document.querySelector('#status')
+  const submit = document.querySelector('#submit')
+  const name = document.querySelector('#name')
+  const setState = (state) => {
+    dialog.dataset.state = state
+    status.textContent = { default: '', loading: '저장 중입니다.', error: '저장하지 못했습니다. 다시 시도해 주세요.', success: '프로필을 저장했습니다.' }[state]
+    submit.disabled = state === 'loading' || state === 'success'
+    name.disabled = state === 'loading' || state === 'success'
+    name.setAttribute('aria-invalid', `${state === 'error'}`)
+    name.setAttribute('aria-describedby', 'status')
+    submit.textContent = state === 'error' ? '다시 시도' : state === 'loading' ? '저장 중' : '저장'
+  }
+  document.querySelector('#open').addEventListener('click', () => { setState('default'); dialog.showModal() })
+  document.querySelector('#close').addEventListener('click', () => dialog.close())
+  document.querySelector('#body').addEventListener('submit', (event) => { event.preventDefault(); setState('loading') })
+  document.addEventListener('fixture-response', (event) => {
+    if (dialog.open && dialog.dataset.state === 'loading' && ['error', 'success'].includes(event.detail)) setState(event.detail)
+  })
+</script>
+</html>

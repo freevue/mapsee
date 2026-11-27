@@ -4,7 +4,7 @@
 
 공용 컴포넌트를 올바르게 사용하는지, 현재 페이지의 UI가 다른 페이지와 일관되는지 검사하는 Claude Code·Codex용 플러그인입니다. 문제의 위치와 근거, 두 검사 축의 일치율과 검사 커버리지를 보고합니다.
 
-1.0.0은 Codex 우선 정식 배포입니다. Claude 패키지 형식은 검사하며 실제 Claude 실행은 미검증입니다. 보고서·CLI의 유지 범위와 버전 정책은 [호환성 계약](plugins/mapsee/COMPATIBILITY.md)을 따릅니다.
+현재 버전은 1.1.0이며 Codex를 우선 지원합니다. Claude 패키지 형식은 검사하며 실제 Claude 실행은 미검증입니다. 보고서·CLI의 유지 범위와 버전 정책은 [호환성 계약](plugins/mapsee/COMPATIBILITY.md)을 따릅니다.
 
 핵심 스킬은 `mapsee:lint`입니다. wiki·디자인 문서·제품 코드를 수정하지 않습니다. bab·pstack이나 사용자가 결과를 받아 후속 작업을 결정합니다. 맵시를 쓰기 위해 다른 개발 방법론이나 플러그인을 설치할 필요는 없습니다.
 
@@ -18,6 +18,8 @@
 비교 페이지는 요청한 대상이나 같은 레이아웃·컴포넌트·역할을 공유하는 페이지에서 선택하고 이유를 밝힙니다. 다른 역할의 화면에 같은 배치를 강요하지 않습니다. 원본 DESIGN과 사용 가이드·컴포넌트 계약을 읽고, 기준이 없는 차이는 판단 필요로 남깁니다.
 
 간격·여백은 역할과 정보 위계에 따른 관계로, 중첩된 카드의 라운드는 부모 반경과 실제 안쪽 거리에 따른 관계로 검사합니다. 배치와 컴포넌트를 사용한 이유도 화면 목적·사용 가이드에 비춰 확인합니다. 구체적인 적용 조건·예외와 보고 예는 [구성과 관계 검사](plugins/mapsee/skills/lint/references/composition.md)에 있습니다.
+
+1.1.0에는 [연속된 의미 중복·반응형 줄바꿈](plugins/mapsee/skills/lint/references/resilience.md), [검사용 문구·로그 잔여물](plugins/mapsee/skills/lint/references/debug-residue.md) 검사를 추가했습니다. 필요한 반복·자연스러운 줄바꿈·정상 안내와 운영 로그는 구분합니다. [격자·측정선 SVG 도구](plugins/mapsee/skills/lint/references/grid.md)는 캡처와 실제 경계로 간격 배수·정렬을 시각화하고, [다이얼로그 등 영역별 검사](plugins/mapsee/skills/lint/references/surfaces.md)는 기본·처리 중·오류·완료 상태와 전환을 연결합니다. [가상 화면 검증과 시각 예시](docs/verification/grid-surfaces.md)를 제공합니다. 검사 중 제품에 문구·로그·격자를 심지 않습니다. 기준·적용 조건·검증 범위는 [1.1.0 배포 노트](docs/releases/1.1.0.md)를 따릅니다.
 
 ## 어떻게 검사하나요?
 
@@ -116,7 +118,7 @@ codex plugin marketplace add freevue/mapsee
 codex plugin add mapsee@mapsee
 ```
 
-기존 Codex 설치는 `codex plugin marketplace upgrade mapsee` 후 `codex plugin add mapsee@mapsee`로 갱신합니다. Node.js 20 이상이 집계 도구 실행에 필요합니다. [1.0.0 배포 노트](docs/releases/1.0.0.md)에서 검증 범위와 남은 제한을 확인합니다.
+기존 Codex 설치는 `codex plugin marketplace upgrade mapsee` 후 `codex plugin add mapsee@mapsee`로 갱신합니다. Node.js 20 이상이 집계 도구 실행에 필요합니다. [1.1.0 배포 노트](docs/releases/1.1.0.md)에서 검증 범위와 남은 제한을 확인합니다.
 
 로컬 개발 패키지를 설치할 때는 저장소 루트에서 마켓플레이스 주소 대신 `.`을 사용합니다. 기존 `maepsi`·`bab-lint` 설치는 자동으로 이름이 바뀌지 않습니다. 전환할 때 이전 설치와 호출 이름을 확인합니다.
 
@@ -144,4 +146,4 @@ Node.js 20 이상에서 저장소 루트의 `node --test test/*.test.mjs`를 실
 
 [토큰 역할·별칭·활성 fallback](plugins/mapsee/skills/lint/references/token-meaning.md), [표시·선택 값·활성 콘텐츠](plugins/mapsee/skills/lint/references/state-meaning.md), [강제 색상의 상태·포커스](plugins/mapsee/skills/lint/references/forced-colors.md)도 원본 계약과 대조합니다. 같은 색을 역할 준수로 보증하거나 native radio에 탭의 ARIA를 강제하지 않습니다. [가상 시나리오 10개](test/fixtures/semantic-contracts/DESIGN.md)의 보고서는 `node test/check-audit-report.mjs <보고서.json> semantic-contracts`로 대조합니다. 이 명령은 소스 분석·브라우저 실행을 대신하지 않습니다.
 
-현재 1.0.0의 [배포 노트](docs/releases/1.0.0.md)·[검증 결과](docs/verification/1.0.0.md)와 [버전별 적용 절차](docs/version-validation.md)를 확인합니다. 이전 [0.12.0 실제 화면](docs/verification/0.12.0.md)·[0.11.0](docs/verification/0.11.0.md)·[0.10.0](docs/verification/0.10.0.md)·[0.9.0](docs/verification/0.9.0.md)·[0.8.0](docs/verification/0.8.0.md)·[0.7.0](docs/verification/0.7.0.md) 자료는 보존합니다. 이전 검증은 [검증 기록](docs/verification.md), 확정 아이콘은 [브랜딩 기록](docs/branding.md)에 있습니다. 이 저장소는 [MIT 라이선스](LICENSE)로 배포합니다.
+현재 1.1.0의 [배포 노트](docs/releases/1.1.0.md)·[검증 결과](docs/verification/1.1.0.md)와 [버전별 적용 절차](docs/version-validation.md)를 확인합니다. 이전 [0.12.0 실제 화면](docs/verification/0.12.0.md)·[0.11.0](docs/verification/0.11.0.md)·[0.10.0](docs/verification/0.10.0.md)·[0.9.0](docs/verification/0.9.0.md)·[0.8.0](docs/verification/0.8.0.md)·[0.7.0](docs/verification/0.7.0.md) 자료는 보존합니다. 이전 검증은 [검증 기록](docs/verification.md), 확정 아이콘은 [브랜딩 기록](docs/branding.md)에 있습니다. 이 저장소는 [MIT 라이선스](LICENSE)로 배포합니다.

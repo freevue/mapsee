@@ -37,4 +37,4 @@
 
 자신이 띄운 브라우저·서버를 종료하고 입력 보존을 확인합니다. 검증 자료를 보존한 뒤 자신의 worktree를 정상 제거합니다. 커밋·푸시·원격 CI·공개 설치 갱신은 실제로 수행했을 때만 완료로 기록합니다.
 
-현재 배포 검증은 [1.0.0](verification/1.0.0.md), 재사용한 실제 화면 표본은 [0.12.0](verification/0.12.0.md), 이전 표본은 [0.11.0](verification/0.11.0.md)과 [0.10.0](verification/0.10.0.md), 검증 명령은 [검증 준비](verification-plan.md)를 따릅니다.
+현재 배포 검증은 [1.1.0](verification/1.1.0.md)이며 이전 [1.0.0](verification/1.0.0.md), 재사용한 실제 화면 표본은 [0.12.0](verification/0.12.0.md), 이전 표본은 [0.11.0](verification/0.11.0.md)과 [0.10.0](verification/0.10.0.md), 검증 명령은 [검증 준비](verification-plan.md)를 따릅니다.
